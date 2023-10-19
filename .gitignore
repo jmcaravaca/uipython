@@ -1,3 +1,4 @@
+*.nupkg
 .DS_Store
 .huskyrc.json
 out

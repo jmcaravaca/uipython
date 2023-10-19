@@ -20,7 +20,6 @@ def get_versions(host: str) -> list:
     select="key, id"
     filter="startswith(key, 'ClarkeModetRPA') or startswith(key, 'ClarkeModetUI')"
     libs = uipclient_libraries.libraries_get(select=select, filter=filter)
-    logger.debug(libs.value)
     versionsflat=[]
     for library in libs.value:
         logger.info(library.id)
@@ -48,12 +47,12 @@ def compare_versions(listpre, listpro):
 
 def download_libs(versions: list[str]) -> list[str]:
     downloaded = []
-    for version in versions.value:
+    for version in versions:
         try:
-            logger.info(version.key)
-            response = uipclient_libraries.libraries_download_package_by_key(key=version.key, _preload_content=False)
+            logger.info(version)
+            response = uipclient_libraries.libraries_download_package_by_key(key=version, _preload_content=False)
             if response.status == 200:
-                file_name = f"{version.key}.nupkg"
+                file_name = f"{version.replace(':','_')}.nupkg"
                 folder_base = "OUTPUT"
                 # Open the local file in binary write mode
                 local_folder_path = os.path.join(os.getcwd(), folder_base)

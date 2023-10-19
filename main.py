@@ -6,7 +6,7 @@ from config.uipapiconfig import (
 
 from config.settings import settings
 
-from .helpers import clear_output, download_libs, get_versions, compare_versions
+from helpers import clear_output, download_libs, get_versions, compare_versions
 # Get PRE versions
 
 
@@ -18,4 +18,4 @@ versionspre = get_versions(host_pre)
 versionspro = get_versions(host_pro)
 compared = compare_versions(versionspre, versionspro)
 logger.info(compared)
-
+download_libs(compared)
