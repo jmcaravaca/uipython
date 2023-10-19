@@ -29,7 +29,7 @@ def FetchUIPathToken(uipclient_config=uipclient_config):
         uipclient_config.access_token = tokenresponse
     logger.info("Token Updated")
     #return tokenresponse.access_token
-    return response
+    return tokenresponse
 
 # On application startup, we'll get a new token and add it to uipath api configuration to get everything ready
 FetchUIPathToken()

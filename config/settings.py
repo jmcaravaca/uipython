@@ -12,5 +12,7 @@ class Settings():
     UIP_AUTH_TOKENURL: str = "https://cloud.uipath.com/identity_/connect/token"
     UIP_LOGICAL_NAME: str = "clarkemodet"
     UIP_TENANT: str = "ClarkeModetPreProd"
+    UIP_TENANT_PRE: str = "ClarkeModetPreProd"
+    UIP_TENANT_PRO: str = "ClarkeModetProd"
 
 settings = Settings(UIP_CLIENT_ID=UIP_CLIENT_ID, UIP_CLIENT_SECRET=UIP_CLIENT_SECRET)

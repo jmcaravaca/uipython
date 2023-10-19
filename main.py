@@ -4,18 +4,18 @@ from config.uipapiconfig import (
     uipclient_libraries
 )
 
-#Update token as needed
-fols = uipclient_folders.folders_get()
-print(fols)
-libs = uipclient_libraries.libraries_get()
+from config.settings import settings
 
-for library in libs.value:
-    logger.info(library.id)
-    versions = uipclient_libraries.libraries_get_versions_by_packageid(package_id=library.id)
-    for version in versions.value:
-        #try:
-            logger.info(version.key)
-            uipclient_libraries.libraries_download_package_by_key(key=version.key)
-            a = 5
-        #except Exception as e:
-            logger.error("Error")
+from .helpers import clear_output, download_libs, get_versions, compare_versions
+# Get PRE versions
+
+
+host_pre = f"https://cloud.uipath.com/{settings.UIP_LOGICAL_NAME}/{settings.UIP_TENANT_PRE}/orchestrator_"
+host_pro = f"https://cloud.uipath.com/{settings.UIP_LOGICAL_NAME}/{settings.UIP_TENANT_PRO}/orchestrator_"
+
+clear_output()
+versionspre = get_versions(host_pre)
+versionspro = get_versions(host_pro)
+compared = compare_versions(versionspre, versionspro)
+logger.info(compared)
+
